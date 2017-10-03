@@ -1,0 +1,46 @@
+.make-a-transfer-form {
+    background-color: #ffffff;
+    margin: 15px;
+    position: relative;
+  }
+  
+  .make-a-transfer-full-width {
+    width: 100%;
+    margin-top: 7px;
+  }
+
+  .title {
+    background-color: #0c8397;
+    color: #ffffff;
+  }
+
+  .title-div {
+    text-align: center;
+    width: 100%;
+  }
+
+  .title-text {
+    margin-left: -24px;
+  }
+
+  .form-div {
+    padding: 30px;
+  }
+
+  .submit {
+    float: right;
+    background-color: #ee7033;
+    width: 160px;
+  }
+
+  .loading {
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    color: #0c8397;
+  }
+
+  .error-no-Funds {
+    color: #C12020;
+  }

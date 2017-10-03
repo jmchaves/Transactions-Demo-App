@@ -1,0 +1,19 @@
+.header {
+    background:#FFF;
+    border-bottom-style: solid;
+    border-bottom-color: #ec6f30;
+    height: 87px;
+}
+
+.logo {
+    padding-top: 18px;
+    width: 100%;
+    height: auto;
+    max-width: 470px;
+}
+
+@media only screen and (min-width: 580px) {
+	.logo {
+        padding-left: 80px;
+    }
+}

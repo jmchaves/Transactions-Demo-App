@@ -1,0 +1,10 @@
+
+<app-header></app-header>
+<div class="section group sides">
+    <div class="col div_2_of_2">
+            <app-make-a-transfer (newTransaction)="addNewTransaction($event)"></app-make-a-transfer>
+    </div>
+    <div class="col div_1_of_2">
+            <app-recent-transactions [addTransaction]="transaction"></app-recent-transactions>
+    </div>
+</div>
