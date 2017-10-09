@@ -39,10 +39,11 @@
     <button class="submit" type="submit" align="right" md-raised-button color="primary" 
             [disabled]="!makeATransferForm.valid || transaction.amount === '0' || showNoFunds || disabledSubmit"
      >SUBMIT</button>
-    <br><br>
+    <br><br><br>
 
-    <div class="loading" *ngIf="showConfirmation">
-         <span>Transaction was completed!</span>
+    <div class="loading">
+         <span *ngIf="showConfirmation">Transaction was completed!</span><br>
+         <span>Created by <a href="https://github.com/jmchaves" target="_blank">Javier Munoz</a></span>
     </div>
 
     <div class="loading error-no-Funds" *ngIf="showNoFunds">
