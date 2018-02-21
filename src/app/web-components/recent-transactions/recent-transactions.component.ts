@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
-import {MdPaginator, MdSort, MdSortable, MdButtonToggleGroup} from '@angular/material';
+import {MatPaginator, MatSort, MatSortable, MatButtonToggleGroup} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/debounceTime';
@@ -23,11 +23,11 @@ export class RecentTransactionsComponent implements OnInit, OnChanges {
   displayedColumns = ['transactionDate', 'merchantLogo', 'merchant', 'amount'];
   transactionsList: Transaction[] = [];
   transactionDataSource: TransactionDataSource | null;
-  mdSortable: MdSortable = {disableClear : true, id : 'transactionDate', start : 'asc'};
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  matSortable: MatSortable = {disableClear : true, id : 'transactionDate', start : 'asc'};
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MdSort) sort: MdSort;
-  @ViewChild(MdButtonToggleGroup) toggleGroupSort: MdButtonToggleGroup;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatButtonToggleGroup) toggleGroupSort: MatButtonToggleGroup;
 
   constructor(
     private TransactionService: TransactionService
@@ -81,9 +81,9 @@ export class RecentTransactionsComponent implements OnInit, OnChanges {
   ************************************************** */
   changeSortBy(selected, startSort): void {
     setTimeout(() => {
-      this.mdSortable.id = selected.value;
-      this.mdSortable.start = startSort;
-      this.sort.sort(this.mdSortable);
+      this.matSortable.id = selected.value;
+      this.matSortable.start = startSort;
+      this.sort.sort(this.matSortable);
     }, 100);
   }
 

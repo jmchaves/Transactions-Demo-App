@@ -1,5 +1,5 @@
-<h2 md-dialog-title>Confirmation</h2>
-<md-dialog-content>
+<h2 mat-dialog-title>Confirmation</h2>
+<mat-dialog-content>
 
   <p><strong>From Account:</strong>
   <br>Free Checking (4692) - {{data.availableBalance | currency:'USD':true}}
@@ -11,12 +11,12 @@
   <p><strong>Amount:</strong>
   <br>{{data.transaction.amount | currency:'USD':true}}</p>
   
-</md-dialog-content>
-<md-dialog-actions >
-  <button md-button tabindex="1" class="transfer" (click)="transfer()"[disabled]="showLoading" >{{buttonText}}</button>
-  <button md-button md-dialog-close tabindex="-1" [disabled]="showLoading">Cancel</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button mat-button tabindex="1" class="transfer" (click)="transfer()"[disabled]="showLoading" >{{buttonText}}</button>
+  <button mat-button mat-dialog-close tabindex="-1" [disabled]="showLoading">Cancel</button>
+</mat-dialog-actions>
 
 <div class="loading" *ngIf="showLoading">
-    <md-progress-bar mode="indeterminate"></md-progress-bar>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>

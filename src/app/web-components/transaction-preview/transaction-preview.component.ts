@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Transaction } from '../../transaction/transaction';
 
@@ -10,8 +10,8 @@ import { Transaction } from '../../transaction/transaction';
 })
 export class TransactionPreviewComponent {
 
-  constructor(public dialogRef: MdDialogRef<TransactionPreviewComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<TransactionPreviewComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   /***************************************************
   - Variables

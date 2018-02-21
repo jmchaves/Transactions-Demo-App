@@ -1,42 +1,42 @@
 <form class="make-a-transfer-form" [formGroup]="makeATransferForm" (ngSubmit)="submit()" novalidate>
-  <md-toolbar class="title">
-      <md-icon>swap_horiz</md-icon>
+  <mat-toolbar class="title">
+      <mat-icon>swap_horiz</mat-icon>
       <div class="title-div">
           <span class="title-text">Make a Transfer</span>
       </div>
-  </md-toolbar>
+  </mat-toolbar>
   <div class="form-div">
-    <md-form-field class="make-a-transfer-full-width">
-        <input mdInput placeholder="From Account" value="Free Checking (4692) - {{availableBalance | currency:'USD':true}}" [disabled]="true" >
-    </md-form-field>
-    <md-form-field class="make-a-transfer-full-width">
-        <input mdInput placeholder="To Account" formControlName="merchant" errorState="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty"
-        [(ngModel)]="transaction.merchant" [errorStateMatcher]="myErrorMatcherAccount.bind(this)" [mdAutocomplete]="auto" >
-        <md-error *ngIf="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty">
+    <mat-form-field class="make-a-transfer-full-width">
+        <input matInput placeholder="From Account" value="Free Checking (4692) - {{availableBalance | currency:'USD':true}}" [disabled]="true" >
+    </mat-form-field>
+    <mat-form-field class="make-a-transfer-full-width">
+        <input matInput placeholder="To Account" formControlName="merchant" errorState="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty"
+        [(ngModel)]="transaction.merchant"  [matAutocomplete]="auto" >
+        <mat-error *ngIf="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty">
             Account is <strong>required</strong>
-        </md-error>
-        <md-autocomplete #auto="mdAutocomplete">
-            <md-option *ngFor="let trans of filteredTransactions | async" [value]="trans.merchant">
+        </mat-error>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let trans of filteredTransactions | async" [value]="trans.merchant">
                 <img style="vertical-align:middle;" aria-hidden src="{{trans.merchantLogo}}" height="25" />
                 <span>{{ trans.merchant }}</span>
-            </md-option>
-        </md-autocomplete>
-    </md-form-field>
-    <md-form-field class="make-a-transfer-full-width">
-        <input currencyMask mdInput placeholder="Amount" formControlName="amount" (keyup)="onKeyAmount()"
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="make-a-transfer-full-width">
+        <input currencyMask matInput placeholder="Amount" formControlName="amount" (keyup)="onKeyAmount()"
         [options]="{allowNegative: false, align: 'left'}" [(ngModel)]="transaction.amount"
-        [errorStateMatcher]="myErrorMatcherAmount.bind(this)">
-        <md-error *ngIf="(makeATransferFormAmount.errors && makeATransferFormAmount.errors.required &&
+        >
+        <mat-error *ngIf="(makeATransferFormAmount.errors && makeATransferFormAmount.errors.required &&
                           makeATransferFormAmount.dirty) || transaction.amount === '0'">
             Amount is <strong>required</strong>
-        </md-error>
-        <md-error *ngIf="makeATransferFormAmount.errors && makeATransferFormAmount.errors.max &&
+        </mat-error>
+        <mat-error *ngIf="makeATransferFormAmount.errors && makeATransferFormAmount.errors.max &&
                 makeATransferFormAmount.dirty">
                 It should be a maximum <strong>$500.00</strong>
-        </md-error>
-    </md-form-field>
+        </mat-error>
+    </mat-form-field>
     <br><br><br>
-    <button class="submit" type="submit" align="right" md-raised-button color="primary" 
+    <button class="submit" type="submit" align="right" mat-raised-button color="primary" 
             [disabled]="!makeATransferForm.valid || transaction.amount === '0' || showNoFunds || disabledSubmit"
      >SUBMIT</button>
     <br><br><br>

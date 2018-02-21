@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Transaction } from './transaction/transaction';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {LoadingComponent} from './web-components/loading/loading.component';
 
 
@@ -15,9 +15,9 @@ export class AppComponent {
   - Variables
   ************************************************** */
   transaction: Transaction;
-  dialogRef: MdDialogRef<LoadingComponent>;
+  dialogRef: MatDialogRef<LoadingComponent>;
 
-  constructor(public dialog: MdDialog) {
+  constructor(public dialog: MatDialog) {
     this.openDialog();
   }
 

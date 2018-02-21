@@ -1,7 +1,7 @@
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import {Transaction} from '../transaction/transaction';
-import {MdPaginator, MdSort} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -19,8 +19,8 @@ export class TransactionDataSource extends DataSource<Transaction> {
     renderedData: Transaction[] = [];
 
     constructor(private _transactionsList: Transaction[],
-                private _paginator: MdPaginator,
-                private _sort: MdSort) {
+                private _paginator: MatPaginator,
+                private _sort: MatSort) {
       super();
       this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output,  SimpleChanges, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 import { Transaction } from '../../transaction/transaction';
@@ -30,7 +30,7 @@ export class MakeATransferComponent implements OnInit {
   filteredTransactions: Observable<Transaction[]>;
 
   constructor(private TransactionService: TransactionService,
-              public dialog: MdDialog) {}
+              public dialog: MatDialog) {}
 
   ngOnInit() {
     this.createFormControls();

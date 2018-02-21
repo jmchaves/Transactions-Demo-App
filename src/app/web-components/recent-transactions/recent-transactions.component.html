@@ -1,79 +1,79 @@
 <div class="main-div">
-  <md-toolbar class="title">
-      <md-icon>business_center</md-icon>
+  <mat-toolbar class="title">
+      <mat-icon>business_center</mat-icon>
       <div class="title-div">
           <span class="title-text">Recent Transactions</span>
       </div>
-  </md-toolbar>
+  </mat-toolbar>
 
-  <div mdSort class="table-container mat-elevation-z8">
+  <div matSort class="table-container mat-elevation-z8">
       <div class="table-header">
-          <md-form-field floatPlaceholder="never">
-            <input mdInput #filter placeholder="Search by typing...">
-            <md-icon mdSuffix *ngIf="filter.value !== ''" class="filter-icon" (click)="clearFilter()">close</md-icon>
-          </md-form-field>
+          <mat-form-field floatPlaceholder="never">
+            <input matInput #filter placeholder="Search by typing...">
+            <mat-icon matSuffix *ngIf="filter.value !== ''" class="filter-icon" (click)="clearFilter()">close</mat-icon>
+          </mat-form-field>
           <div class="div-sort">
               <strong class="sort-title"> Sort by:</strong> 
-              <md-button-toggle-group #sortByElement="mdButtonToggleGroup"
+              <mat-button-toggle-group #sortByElement="matButtonToggleGroup"
                  (click)="changeSortBy(sortByElement, 'asc')" 
                  value="transactionDate">
-                  <md-button-toggle value="transactionDate">
+                  <mat-button-toggle value="transactionDate">
                     Date
-                    <md-icon *ngIf="sort.active=='transactionDate' && sort.direction=='asc'">arrow_drop_down</md-icon>
-                    <md-icon *ngIf="sort.active=='transactionDate' && sort.direction=='desc'">arrow_drop_up</md-icon>
-                  </md-button-toggle>
-                  <md-button-toggle value="merchant">
+                    <mat-icon *ngIf="sort.active=='transactionDate' && sort.direction=='asc'">arrow_drop_down</mat-icon>
+                    <mat-icon *ngIf="sort.active=='transactionDate' && sort.direction=='desc'">arrow_drop_up</mat-icon>
+                  </mat-button-toggle>
+                  <mat-button-toggle value="merchant">
                     Beneficiary
-                    <md-icon *ngIf="sort.active=='merchant' && sort.direction=='asc'">arrow_drop_down</md-icon>
-                    <md-icon *ngIf="sort.active=='merchant' && sort.direction=='desc'">arrow_drop_up</md-icon>
-                  </md-button-toggle>
-                  <md-button-toggle value="amount">
+                    <mat-icon *ngIf="sort.active=='merchant' && sort.direction=='asc'">arrow_drop_down</mat-icon>
+                    <mat-icon *ngIf="sort.active=='merchant' && sort.direction=='desc'">arrow_drop_up</mat-icon>
+                  </mat-button-toggle>
+                  <mat-button-toggle value="amount">
                     Amount
-                    <md-icon *ngIf="sort.active=='amount' && sort.direction=='asc'">arrow_drop_down</md-icon>
-                    <md-icon *ngIf="sort.active=='amount' && sort.direction=='desc'">arrow_drop_up</md-icon>
-                  </md-button-toggle>
-                </md-button-toggle-group>
+                    <mat-icon *ngIf="sort.active=='amount' && sort.direction=='asc'">arrow_drop_down</mat-icon>
+                    <mat-icon *ngIf="sort.active=='amount' && sort.direction=='desc'">arrow_drop_up</mat-icon>
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
           </div>
       </div>
-      <md-table #table [dataSource]="transactionDataSource">
-        <ng-container mdColumnDef="transactionDate">
-            <md-header-cell *mdHeaderCellDef></md-header-cell>
-            <md-cell *mdCellDef="let row"  class="row-border" [ngStyle]="{'border-left-color': row.categoryCode}"> 
+      <mat-table #table [dataSource]="transactionDataSource">
+        <ng-container matColumnDef="transactionDate">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row"  class="row-border" [ngStyle]="{'border-left-color': row.categoryCode}"> 
                 <span class="transaction-date">{{row.transactionDate | date:'MMM. d'}}</span> 
-            </md-cell>
+            </mat-cell>
         </ng-container>
       
-        <ng-container mdColumnDef="merchantLogo">
-            <md-header-cell *mdHeaderCellDef>  </md-header-cell>
-          <md-cell *mdCellDef="let row"> 
+        <ng-container matColumnDef="merchantLogo">
+            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
             <img [src]="row.merchantLogo" class="merchant-logo">
-          </md-cell>
+          </mat-cell>
         </ng-container>
     
-        <ng-container mdColumnDef="merchant">
-            <md-header-cell *mdHeaderCellDef> </md-header-cell>
-          <md-cell *mdCellDef="let row"> <strong class="merchant">{{row.merchant}}</strong>
+        <ng-container matColumnDef="merchant">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let row"> <strong class="merchant">{{row.merchant}}</strong>
             <br>
             {{row.transactionType}} 
-          </md-cell>
+          </mat-cell>
         </ng-container>
     
-        <ng-container mdColumnDef="amount">
-            <md-header-cell *mdHeaderCellDef>  </md-header-cell>
-          <md-cell *mdCellDef="let row" class="amount-right"> 
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="amount-right"> 
               <strong>- {{row.amount | currency:'USD':true}}</strong>
-          </md-cell>
+          </mat-cell>
         </ng-container>
     
-        <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-      </md-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
       
-      <md-paginator #paginator
+      <mat-paginator #paginator
                     [length]="transactionsList.length"
                     [pageIndex]="0"
                     [pageSize]="10"
                     [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
   </div>
 </div>
