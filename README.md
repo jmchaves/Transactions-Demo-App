@@ -12,9 +12,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 - node 8.2.1
 - npm 5.4.2
-- angular cli 1.2.7
-- angular 5.2.5
-- angular material 5.2.2
+- angular cli 1.7.4
+- angular 5.2.10
+- angular material 5.2.5
+- typescript: 2.6.2
 
 ## Code scaffolding
 
