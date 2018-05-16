@@ -8,7 +8,7 @@
 
   <div matSort class="table-container mat-elevation-z8">
       <div class="table-header">
-          <mat-form-field floatPlaceholder="never">
+          <mat-form-field floatLabel="never">
             <input matInput #filter placeholder="Search by typing...">
             <mat-icon matSuffix *ngIf="filter.value !== ''" class="filter-icon" (click)="clearFilter()">close</mat-icon>
           </mat-form-field>
@@ -39,7 +39,7 @@
         <ng-container matColumnDef="transactionDate">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row"  class="row-border" [ngStyle]="{'border-left-color': row.categoryCode}"> 
-                <span class="transaction-date">{{row.transactionDate | date:'MMM. d'}}</span> 
+                <span>{{row.transactionDate | date:'MMM. d'}}</span> 
             </mat-cell>
         </ng-container>
       
@@ -53,15 +53,19 @@
         <ng-container matColumnDef="merchant">
             <mat-header-cell *matHeaderCellDef> </mat-header-cell>
           <mat-cell *matCellDef="let row"> <strong class="merchant">{{row.merchant}}</strong>
-            <br>
-            {{row.transactionType}} 
           </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="transactionType">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.transactionType}} 
+        </mat-cell>
+      </ng-container>
     
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-          <mat-cell *matCellDef="let row" class="amount-right"> 
-              <strong>- {{row.amount | currency:'USD':'true'}}</strong>
+          <mat-cell *matCellDef="let row"> 
+              <strong>- {{ row.amount | currency }}</strong>
           </mat-cell>
         </ng-container>
     

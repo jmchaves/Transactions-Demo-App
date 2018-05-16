@@ -1,7 +1,8 @@
 import { Component, OnInit, Output,  SimpleChanges, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { Transaction } from '../../transaction/transaction';
 import { TransactionService } from '../../transaction/transaction.service';
@@ -51,12 +52,14 @@ export class MakeATransferComponent implements OnInit {
   - Valids the form and opens modal preview
   ************************************************** */
   submit(): void {
-    if (this.availableBalance >= parseFloat(this.transaction.amount)) {
-      if (this.makeATransferForm.valid) {
-        this.openDialog();
+    if (!isNaN(parseFloat(this.transaction.amount))) {
+      if (this.availableBalance >= parseFloat(this.transaction.amount)) {
+        if (this.makeATransferForm.valid) {
+          this.openDialog();
+        }
+      } else {
+        this.showNoFundsFn();
       }
-    } else {
-      this.showNoFundsFn();
     }
   }
 
@@ -169,9 +172,9 @@ export class MakeATransferComponent implements OnInit {
     .getTransactions()
       .then(function(transactions){
         self.allTransactions = transactions;
-        self.filteredTransactions = self.makeATransferFormAccount.valueChanges
-        .startWith(null)
-        .map(transaction => transaction ? self.filterTransactions(transaction) : self.allTransactions.slice());
+        self.filteredTransactions = self.makeATransferFormAccount.valueChanges.pipe(
+        startWith(null),
+        map(transaction => transaction ? self.filterTransactions(transaction) : self.allTransactions.slice()));
     });
   }
 

@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {MatPaginator, MatSort, MatSortable, MatButtonToggleGroup} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
+import {Observable, fromEvent} from 'rxjs';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import { TransactionService } from '../../transaction/transaction.service';
 import { Transaction } from '../../transaction/transaction';
 import { TransactionDataSource } from '../../transaction/transactions-data-source';
@@ -20,7 +17,7 @@ export class RecentTransactionsComponent implements OnInit, OnChanges {
   - Variables
   ************************************************** */
   @Input() addTransaction: Transaction;
-  displayedColumns = ['transactionDate', 'merchantLogo', 'merchant', 'amount'];
+  displayedColumns = ['transactionDate', 'merchantLogo', 'merchant', 'transactionType', 'amount'];
   transactionsList: Transaction[] = [];
   transactionDataSource: TransactionDataSource | null;
   matSortable: MatSortable = {disableClear : true, id : 'transactionDate', start : 'asc'};
@@ -67,9 +64,9 @@ export class RecentTransactionsComponent implements OnInit, OnChanges {
   ************************************************** */
   filterEvent(): void {
     const self = this;
-    Observable.fromEvent(self.filter.nativeElement, 'keyup')
-    .debounceTime(150)
-    .distinctUntilChanged()
+    fromEvent(self.filter.nativeElement, 'keyup').pipe(
+    debounceTime(150),
+    distinctUntilChanged())
     .subscribe(() => {
       if (!self.transactionDataSource) { return; }
       self.transactionDataSource.filter = self.filter.nativeElement.value;

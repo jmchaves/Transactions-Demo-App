@@ -1,11 +1,8 @@
 import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
+import {Observable, BehaviorSubject, merge} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {Transaction} from '../transaction/transaction';
 import {MatPaginator, MatSort} from '@angular/material';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 export class TransactionDataSource extends DataSource<Transaction> {
 
@@ -36,7 +33,7 @@ export class TransactionDataSource extends DataSource<Transaction> {
         this._sort.sortChange,
       ];
 
-      return Observable.merge(...displayDataChanges).map(() => {
+      return merge(...displayDataChanges).pipe(map(() => {
         // Filter data
         this.filteredData = this._transactionsList.slice().filter((item: Transaction) => {
             const searchStr = (item.merchant + item.amount + item.transactionType).toLowerCase();
@@ -49,7 +46,7 @@ export class TransactionDataSource extends DataSource<Transaction> {
         const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
         this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
         return this.renderedData;
-      });
+      }));
     }
 
     disconnect() {}

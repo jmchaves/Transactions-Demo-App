@@ -7,7 +7,7 @@
   </mat-toolbar>
   <div class="form-div">
     <mat-form-field class="make-a-transfer-full-width">
-        <input matInput placeholder="From Account" value="Free Checking (4692) - {{availableBalance | currency:'USD':'true'}}" [disabled]="true" >
+        <input matInput placeholder="From Account" value="Free Checking (4692) - {{ availableBalance | currency }}" [disabled]="true" >
     </mat-form-field>
     <mat-form-field class="make-a-transfer-full-width">
         <input matInput placeholder="To Account" formControlName="merchant" errorState="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty"
@@ -27,7 +27,7 @@
         [options]="{allowNegative: false, align: 'left'}" [(ngModel)]="transaction.amount"
         >
         <mat-error *ngIf="(makeATransferFormAmount.errors && makeATransferFormAmount.errors.required &&
-                          makeATransferFormAmount.dirty) || transaction.amount === '0'">
+                          makeATransferFormAmount.dirty) || transaction.amount === '0' || transaction.amount === 'NaN'">
             Amount is <strong>required</strong>
         </mat-error>
         <mat-error *ngIf="makeATransferFormAmount.errors && makeATransferFormAmount.errors.max &&
@@ -46,7 +46,7 @@
          <span>Created by <a href="https://github.com/jmchaves" target="_blank">Javier Munoz</a></span>
     </div>
 
-    <div class="loading error-no-Funds" *ngIf="showNoFunds">
+    <div class="error-no-Funds" *ngIf="showNoFunds">
             <span>The account does not have sufficient funds!</span>
     </div>
     

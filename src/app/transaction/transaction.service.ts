@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-
 import { Transaction } from './transaction';
-import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class TransactionService {
