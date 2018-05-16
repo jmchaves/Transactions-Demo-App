@@ -2,7 +2,7 @@
 
 # Transactions-Demo-App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1
 
 ## Development server
 
@@ -10,12 +10,12 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Versions:
 
-- node 8.2.1
-- npm 5.4.2
-- angular cli 1.7.4
-- angular 5.2.10
-- angular material 5.2.5
-- typescript: 2.6.2
+- node 10.0.0
+- npm 6.0.1
+- angular cli 6.0.1
+- angular 6.0.2
+- angular material 6.0.0
+- typescript: 2.7.2
 
 ## Code scaffolding
 
