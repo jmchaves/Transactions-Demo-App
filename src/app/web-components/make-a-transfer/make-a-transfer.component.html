@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field class="make-a-transfer-full-width">
         <input matInput placeholder="To Account" formControlName="merchant" errorState="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty"
-        [(ngModel)]="transaction.merchant"  [matAutocomplete]="auto" >
+        [matAutocomplete]="auto" >
         <mat-error *ngIf="makeATransferFormAccount.invalid && makeATransferFormAccount.dirty">
             Account is <strong>required</strong>
         </mat-error>
@@ -24,7 +24,7 @@
     </mat-form-field>
     <mat-form-field class="make-a-transfer-full-width">
         <input currencyMask matInput placeholder="Amount" formControlName="amount" (keyup)="onKeyAmount()"
-        [options]="{allowNegative: false, align: 'left'}" [(ngModel)]="transaction.amount"
+        [options]="{allowNegative: false, align: 'left'}"
         >
         <mat-error *ngIf="(makeATransferFormAmount.errors && makeATransferFormAmount.errors.required &&
                           makeATransferFormAmount.dirty) || transaction.amount === '0' || transaction.amount === 'NaN'">

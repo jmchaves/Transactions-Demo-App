@@ -43,6 +43,7 @@ export class MakeATransferComponent implements OnInit {
   - Avoids zero in the input
   ************************************************** */
   onKeyAmount(): void {
+    this.transaction.amount = this.makeATransferForm.get('amount').value;
     if (String(this.transaction.amount)  === '0') {
         this.transaction.amount = '';
     }
@@ -52,6 +53,7 @@ export class MakeATransferComponent implements OnInit {
   - Valids the form and opens modal preview
   ************************************************** */
   submit(): void {
+    this.transaction.amount = this.makeATransferForm.get('amount').value;
     if (!isNaN(parseFloat(this.transaction.amount))) {
       if (this.availableBalance >= parseFloat(this.transaction.amount)) {
         if (this.makeATransferForm.valid) {
@@ -158,6 +160,7 @@ export class MakeATransferComponent implements OnInit {
   - Manages a custom validation (Amount)
   ************************************************** */
   myErrorMatcherAmount(control) {
+    this.transaction.amount = this.makeATransferForm.get('amount').value;
     return (this.makeATransferFormAmount.invalid &&
             this.makeATransferFormAmount.dirty.valueOf())
             || String(this.transaction.amount) === '0';
@@ -191,15 +194,21 @@ export class MakeATransferComponent implements OnInit {
   ************************************************** */
   openDialog(): void {
     this.disabledSubmit = true;
+    const transaction = {
+      'merchant' : this.makeATransferForm.get('merchant').value,
+      'amount' : this.makeATransferForm.get('amount').value
+    };
     const dialogRef = this.dialog.open(TransactionPreviewComponent, {
       width: '350px',
       disableClose : true,
-      data: { transaction : this.transaction, availableBalance : this.availableBalance }
+      data: { transaction : transaction, availableBalance : this.availableBalance }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.disabledSubmit = false;
       if (result) {
+        this.transaction.amount = this.makeATransferForm.get('amount').value;
+        this.transaction.merchant = this.makeATransferForm.get('merchant').value;
         this.transaction.transactionDate = new Date();
         this.transaction.categoryCode = this.generateCategoryCode();
         this.transaction.merchantLogo = this.generateMerchantLogo(this.transaction.merchant);
